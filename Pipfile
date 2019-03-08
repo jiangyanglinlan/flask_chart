@@ -1,11 +1,10 @@
 [[source]]
-url = "https://pypi.org/simple"
+url = "http://pypi.douban.com/simple/"
 verify_ssl = true
 name = "pypi"
 
 [packages]
 flask = "*"
-flask-socketio = "*"
 
 [dev-packages]
 
