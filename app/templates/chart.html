@@ -1,28 +1,41 @@
 <html>
     <head>
         <title>chart</title>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/base.css') }}">
         <script src="{{ url_for('static', filename='js/jquery.js') }}"></script>
         <script src="{{ url_for('static', filename='js/echarts.min.js') }}"></script>
     </head>
     <body>
-        <div id='id-div-channels' class="rc-left">
-            <h1 id = 'id-div-channels-title'>chart</h1>
+        <div id='id-div-channels' class="top">
+            <h1 id = 'id-div-channels-title'>图表</h1>
             <a class="chart-type" href="#" data-name="pie">饼图</a>
             <a class="chart-type" href="#" data-name="line">折线图</a>
-            <a class="chart-type" href="#" data-name="bar">柱子状</a>
+            <a class="chart-type" href="#" data-name="bar">柱状图</a>
         </div>
-        <h1>chart</h1>
-        <div id="chartmain" style="width:600px; height: 400px;"></div>
-        <button class='save'>保存</button>
-        <div class="todo-main">
-            <!-- 输入框 -->
-            <div class="todo-form">
-                <input id='id-input-name' type="text">
-                <input id='id-input-value' type="text">
-                <button id='id-button-add' type="button">添加</button>
+        <div class="container">
+            <div id="chartmain" class="content"></div>
+            <div class="sidebar">
+                {% for chart in all_charts %}
+                    <div>
+                        {{ chart.name }}
+                    </div>
+                {% endfor %}
             </div>
-            <!-- 列表 -->
-            <div id="id-div-container">
+        </div>
+
+        <div class="bottom">
+            <button class='save'>保存</button>
+            <div class="todo-main">
+                <!-- 输入框 -->
+                <div class="todo-form">
+                    <label>x 轴变量</label><input id='id-input-name' type="text">
+                    <label>值(数字)</label><input id='id-input-value' type="text">
+                    <button id='id-button-add' type="button">添加</button>
+                </div>
+                <!-- 列表 -->
+                <div id="id-div-container">
+                </div>
             </div>
         </div>
     </body>

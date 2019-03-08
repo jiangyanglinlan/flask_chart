@@ -24,7 +24,7 @@ def index():
 def chart(name):
     all_charts = Data.query.all()
     print(all_charts)
-    return render_template('chart.html', name=name)
+    return render_template('chart.html', name=name, all_charts=all_charts)
 
 
 @main.route('/chart/api/v1.0/items', methods=['POST'])

@@ -203,8 +203,13 @@ var currentTime = function() {
 
 $(function(){
     $('.save').click(function(){
+        m = {
+            'pie': '饼状图',
+            'bar': '柱状图',
+            'line': '折线图',
+        }
         var data = {
-            'name': '创建于' + currentTime(),
+            'name': '创建于' + currentTime() + '的' + m[series[0].type],
             'option': JSON.stringify(option)
         }
         console.log('data =', data)

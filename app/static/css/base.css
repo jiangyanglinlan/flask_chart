@@ -1,0 +1,35 @@
+.top {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.top>a {
+    font-size: 20px;
+}
+
+.container {
+    /* flex 可以让它里面的元素(这里是 content 和 sidebar)使用 flex 布局 */
+    display: flex;
+    /* 高度 100 像素 */
+    height: 400px;
+    /* 宽度 80% */
+    width: 80%;
+    /* margin: 0 auto 用来居中这个东西 */
+    margin: 0 auto;
+}
+
+/* content 占了 4 份 */
+.content {
+    flex-grow: 4;
+    width: 600px;
+    height: 400px;
+}
+
+/* sidebar 占了 3 份 */
+.sidebar {
+    flex-grow: 3;
+}
+
+.bottom {
+    margin: 0 auto;
+}
