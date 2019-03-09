@@ -6,6 +6,11 @@ from flask import (
     abort,
     jsonify,
 )
+from app.utils import (
+    current_time,
+    debug,
+    log
+)
 from . import main
 from app import db
 from app.models import Data
@@ -23,7 +28,6 @@ def index():
 @main.route('/chart/<name>')
 def chart(name):
     all_charts = Data.query.all()
-    print(all_charts)
     return render_template('chart.html', name=name, all_charts=all_charts)
 
 
@@ -31,8 +35,9 @@ def chart(name):
 def add_chart():
     if not request.form:
         abort(400)
-    name = request.form.get('name')
+    type = request.form.get('type')
     option = request.form.get('option')
+    name = '创建于' + current_time() + '的' + type
     d = Data(name=name, option=option)
     db.session.add(d)
     db.session.commit()
@@ -40,11 +45,9 @@ def add_chart():
 
 
 @main.route('/chart/api/v1.0/items/<id>', methods=['GET'])
-def get_chart():
-    if not request.args or 'id' not in request.args:
-        return jsonify({'result': 'error'})
-    id = request.args.get('id')
-    d = Data.get(id)
-    return jsonify(d) if d else jsonify({'result': 'not found'})
+def get_chart(id):
+    d = Data.query.filter_by(id=id).first()
+    return jsonify({'result': 'success', 'option_name': d.name, 'option': d.option, \
+                    'option_id': d.id}) if d else jsonify({'result': 'not found'})
 
 

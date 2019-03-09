@@ -18,7 +18,9 @@
             <div class="sidebar">
                 {% for chart in all_charts %}
                     <div>
-                        {{ chart.name }}
+                        <a class="select-chart" data-id="{{ chart.id }}" href="#">
+                            {{ chart.name }}
+                        </a>
                     </div>
                 {% endfor %}
             </div>

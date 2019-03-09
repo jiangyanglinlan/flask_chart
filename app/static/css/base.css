@@ -8,13 +8,13 @@
 }
 
 .container {
-    /* flex 可以让它里面的元素(这里是 content 和 sidebar)使用 flex 布局 */
+    /* 让里面的元素使用 flex 布局 */
     display: flex;
     /* 高度 100 像素 */
     height: 400px;
     /* 宽度 80% */
     width: 80%;
-    /* margin: 0 auto 用来居中这个东西 */
+    /* 居中 */
     margin: 0 auto;
 }
 
@@ -31,5 +31,14 @@
 }
 
 .bottom {
+    text-align: center;
     margin: 0 auto;
+    margin-left: 500px;
+    margin-right: 800px;
+}
+
+.todo-cell {
+    margin-left: 55px;
+    float: left;
+    clear: both;
 }

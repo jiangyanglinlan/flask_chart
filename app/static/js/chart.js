@@ -10,6 +10,7 @@ var createChart = function (option) {
 var reviewChart = function () {
     var myChart = echarts.init(document.getElementById('chartmain'));
     myChart.setOption(option, true);
+    initTodos()
 }
 
 // 修改类型
