@@ -51,3 +51,11 @@ def get_chart(id):
                     'option_id': d.id}) if d else jsonify({'result': 'not found'})
 
 
+@main.route('/chart/api/v1.0/items/delete/<id>', methods=['POST'])
+def delete_chart(id):
+    d = Data.query.filter_by(id=id).first()
+    if d is None:
+        return jsonify({'result': 'not found'})
+    db.session.delete(d)
+    db.session.commit()
+    return jsonify({'result': 'success'})

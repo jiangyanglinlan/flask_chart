@@ -18,9 +18,10 @@
             <div class="sidebar">
                 {% for chart in all_charts %}
                     <div>
-                        <a class="select-chart" data-id="{{ chart.id }}" href="#">
+                        <a class="chart-select" data-id="{{ chart.id }}" href="#">
                             {{ chart.name }}
                         </a>
+                        <button class="chart-delete">删除</button>
                     </div>
                 {% endfor %}
             </div>

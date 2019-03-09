@@ -27,14 +27,13 @@ var bindEventAdd = function() {
         }
         todoList.push(todo)
         saveTodos()
-        insertTodo(todo)
+        // insertTodo(todo)
     })
 }
 
 var bindEventEnter = function() {
     var todoContainer = document.querySelector('#id-div-container')
     todoContainer.addEventListener('keydown', function(event){
-        log('container keydown', event, event.target)
         var target = event.target
         if(event.key === 'Enter') {
             // 失去焦点
@@ -56,7 +55,6 @@ var bindEventButton = function() {
     // 通过 event.target 的 class 来检查点击的是什么
     var todoContainer = document.querySelector('#id-div-container')
     todoContainer.addEventListener('click', function(event){
-        log('container click', event, event.target)
         var target = event.target
         if (target.classList.contains('todo-delete')) {
             var todoDiv = target.parentElement
@@ -81,10 +79,8 @@ var EventType = {
 }
 
 var bindEventBlur = function() {
-    log('bind event blur function')
     var todoContainer = document.querySelector('#id-div-container')
     todoContainer.addEventListener(EventType.blur, function(event){
-        log('container blur', event, event.target)
         var target = event.target
         if (target.classList.contains('todo-value')) {
             // 让 span 不可编辑
@@ -191,11 +187,36 @@ var newChartAdd = function(newName, newId) {
 // 插入新的图表模板
 var templateNewChart = function(newName, newId) {
     var t = `
-        <a class="select-chart" data-id="${newId}" href="#">
-            ${newName}
-        </a>
+        <div>
+            <a class="chart-select" data-id="${newId}" href="#">
+                ${newName}
+            </a>
+            <button class="chart-delete">删除</button>
+        </div>
     `
     return t
+}
+
+// 删除图表
+var chartDelete = function(chartId) {
+    charts = $('.sidebar').children()
+    var arr = Array()
+    for (var i = 0; i < charts.length; i++) {
+        if (charts[i].children[0].dataset.id != chartId) {
+            arr.push(charts[i])
+        }
+    }
+    sidebarReload(arr)
+}
+
+var sidebarReload = function(chartArr) {
+    var chartContainer = document.querySelector('.sidebar')
+    chartContainer.innerHTML = ''
+    for (var i = 0; i < chartArr.length; i++) {
+        var c = chartArr[i].children[0]
+        var t = templateNewChart(c.innerText, c.dataset.id)
+        chartContainer.insertAdjacentHTML('beforeend', t);
+    }
 }
 
 $(function(){
@@ -224,10 +245,8 @@ $(function(){
             }
         });
     });
-});
 
-$(function() {
-    $('.sidebar').on('click', '.select-chart', function() {
+    $('.sidebar').on('click', '.chart-select', function() {
         var id = $(this).data('id')
         var data = {
             'id': id,
@@ -246,4 +265,23 @@ $(function() {
             }
         })
     })
-})
+
+    $('.sidebar').on('click', '.chart-delete', function() {
+        var id = $(this).prev().data('id')
+        var data = {
+            'id': id,
+        }
+        $.ajax({
+            type: 'POST',
+            url: '/chart/api/v1.0/items/delete/' + id,
+            data: data,
+            success: function (data) {
+                if (data['result'] == 'success') {
+                    chartDelete(id)
+                } else {
+                    alert('删除失败')
+                }
+            }
+        })
+    })
+});

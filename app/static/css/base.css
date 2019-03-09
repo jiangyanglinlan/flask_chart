@@ -25,9 +25,9 @@
     height: 400px;
 }
 
-/* sidebar 占了 3 份 */
+/* sidebar 占了 1 份 */
 .sidebar {
-    flex-grow: 3;
+    flex-grow: 1;
 }
 
 .bottom {
