@@ -1,13 +1,19 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>index</title>
+        <title>首页</title>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/base.css') }}">
+        <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/4.0.0/css/bootstrap.min.css">
     </head>
     <body>
-        <h1>请输入图表的 y 坐标值</h1>
-        <form method="post">
-            <input name="name" type="text">
-            <button type="submit">创建图表</button>
+        <form class="form-index" method="post" novalidate>
+            <div class="col-sm-3">
+                <label>请输入 y 坐标的值</label>
+                <input class="form-control" name="name" placeholder="y" autocomplete="off">
+            </div>
+            <br>
+            <button class="btn btn-primary button-index" type="submit">创建图表</button>
         </form>
     </body>
 </html>

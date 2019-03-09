@@ -39,6 +39,21 @@
 
 .todo-cell {
     margin-left: 55px;
+    margin-top: 3px;
     float: left;
     clear: both;
+}
+
+.form-index {
+    margin-top: 300px;
+    margin-left: 850px;
+}
+
+.button-index {
+    margin-left: 15px;
+    width: 100px;
+}
+
+.chart-delete {
+    margin-top: 3px;
 }

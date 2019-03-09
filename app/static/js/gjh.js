@@ -40,13 +40,6 @@ var bindEventEnter = function() {
             target.blur()
             // 阻止默认行为的发生, 也就是不插入回车
             event.preventDefault()
-            // 更新
-            var index = indexOfElement(target.parentElement)
-            // 把元素在 todoList 中更新
-            todoList[index].value = target.innerHTML
-            // todoList.splice(index, 1)
-            saveTodos()
-
         }
     })
 }
@@ -118,8 +111,8 @@ var insertTodo = function(todo) {
 var templateTodo = function(todo) {
     var t = `
         <div class='todo-cell'>
-            <button class='todo-delete'>删除</button>
-            <button class='todo-edit'>编辑</button>
+            <button class='todo-delete btn btn-danger'>删除</button>
+            <button class='todo-edit btn btn-warning'>编辑</button>
             <span class='todo-label'>${todo.name}</span> <span class="todo-value">${todo.value}</span>
         </div>
     `
@@ -191,7 +184,7 @@ var templateNewChart = function(newName, newId) {
             <a class="chart-select" data-id="${newId}" href="#">
                 ${newName}
             </a>
-            <button class="chart-delete">删除</button>
+            <button class="chart-delete btn btn-danger">删除</button>
         </div>
     `
     return t

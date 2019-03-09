@@ -2,6 +2,8 @@
     <head>
         <title>chart</title>
         <meta charset="utf-8">
+        <title>图表</title>
+        <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/4.0.0/css/bootstrap.min.css">
         <link rel="stylesheet" href="{{ url_for('static', filename='css/base.css') }}">
         <script src="{{ url_for('static', filename='js/jquery.js') }}"></script>
         <script src="{{ url_for('static', filename='js/echarts.min.js') }}"></script>
@@ -21,20 +23,20 @@
                         <a class="chart-select" data-id="{{ chart.id }}" href="#">
                             {{ chart.name }}
                         </a>
-                        <button class="chart-delete">删除</button>
+                        <button class="chart-delete btn btn-danger">删除</button>
                     </div>
                 {% endfor %}
             </div>
         </div>
 
         <div class="bottom">
-            <button class='save'>保存</button>
+            <button class='save btn btn-primary'>保存</button>
             <div class="todo-main">
                 <!-- 输入框 -->
                 <div class="todo-form">
                     <label>x 轴变量</label><input id='id-input-name' type="text">
                     <label>值(数字)</label><input id='id-input-value' type="text">
-                    <button id='id-button-add' type="button">添加</button>
+                    <button id='id-button-add' class="btn btn-primary" type="button">添加</button>
                 </div>
                 <!-- 列表 -->
                 <div id="id-div-container">
